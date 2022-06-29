@@ -29,4 +29,59 @@ body {
 
 .App {
   min-height: 100vh;
+  padding: 0 20px;
+}
+
+/* MyButton */
+.MyButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-family: "Noto Sans KR";
+  font-size: 18px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.MyButton_default {
+  background-color: #ececec;
+  color: #000;
+}
+
+.MyButton_positive {
+  background-color: #64c964;
+  color: #fff;
+}
+
+.MyButton_negative {
+  background-color: #fd565f;
+  color: #fff;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  padding: 20px 0;
+  align-items: center;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+header > div {
+  display: flex;
+}
+
+header .head_text {
+  width: 50%;
+  font-size: 25px;
+  justify-content: center;
+}
+
+header .head_btn_left {
+  width: 25%;
+  justify-content: start;
+}
+
+header .head_btn_right {
+  width: 25%;
+  justify-content: end;
 }
