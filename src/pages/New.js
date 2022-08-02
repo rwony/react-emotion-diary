@@ -1,16 +1,8 @@
-import { useEffect } from "react";
-import DiaryEditor from "../components/DiaryEditor";
-
 const New = () => {
-  // 타이틀 변경
-  useEffect(() => {
-    const titleElement = document.getElementsByTagName("title")[0];
-    titleElement.innerHTML = `감정 일기장 - 새로운 일기 작성`;
-  }, []);
-
   return (
     <div>
-      <DiaryEditor />
+      <h1>New</h1>
+      <p>이 곳은 일기 추가 작성 페이지 입니다.</p>
     </div>
   );
 };

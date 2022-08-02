@@ -1,11 +1,11 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import New from "./pages/New";
 import Edit from "./pages/Edit";
 import Diary from "./pages/Diary";
-import React, { useEffect, useReducer, useRef } from "react";
+import React, { useReducer, useRef } from "react";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -31,31 +31,48 @@ const reducer = (state, action) => {
       return state;
   }
 
-  localStorage.setItem("diary", JSON.stringify(newState));
   return newState;
 };
 
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 
+const dummyData = [
+  {
+    id: 11,
+    emotion: 1,
+    content: "일기 1",
+    date: 1659421286104,
+  },
+  {
+    id: 12,
+    emotion: 2,
+    content: "일기 2",
+    date: 1659421297504,
+  },
+  {
+    id: 13,
+    emotion: 3,
+    content: "일기 3",
+    date: 1659421298504,
+  },
+  {
+    id: 14,
+    emotion: 4,
+    content: "일기 4",
+    date: 1659421299204,
+  },
+  {
+    id: 15,
+    emotion: 5,
+    content: "일기 5",
+    date: 1659421299904,
+  },
+];
+
 function App() {
-  const [data, dispatch] = useReducer(reducer, []);
+  const [data, dispatch] = useReducer(reducer, dummyData);
   const dataId = useRef(0);
-
-  // 다이어리 id 값 설정
-  useEffect(() => {
-    const localData = localStorage.getItem("diary");
-    if (localData) {
-      const diaryList = JSON.parse(localData).sort(
-        (a, b) => parseInt(b.id) - parseInt(a.id)
-      );
-
-      if (diaryList.length >= 1) {
-        dataId.current = parseInt(diaryList[0].id) + 1;
-        dispatch({ type: "INIT", data: diaryList });
-      }
-    }
-  }, []);
 
   // CREATE
   const onCreate = (date, content, emotion) => {
@@ -68,7 +85,7 @@ function App() {
         emotion,
       },
     });
-    dataId.current += 1;
+    dataId.current++;
   };
 
   // REMOVE
@@ -82,8 +99,8 @@ function App() {
       type: "EDIT",
       data: {
         id: targetId,
-        date: new Date(date).getTime(),
         content,
+        date: new Date(date).getTime(),
         emotion,
       },
     });
@@ -91,13 +108,13 @@ function App() {
 
   return (
     <DiaryStateContext.Provider value={data}>
-      <DiaryDispatchContext.Provider value={{ onCreate, onEdit, onRemove }}>
+      <DiaryDispatchContext.Provider value={(onCreate, onEdit, onRemove)}>
         <BrowserRouter>
           <div className="App">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/new" element={<New />} />
-              <Route path="/edit/:id" element={<Edit />} />
+              <Route path="/edit" element={<Edit />} />
               <Route path="/diary/:id" element={<Diary />} />
             </Routes>
           </div>
