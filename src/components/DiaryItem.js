@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router";
-
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import MyButton from "./MyButton";
 
 const DiaryItem = ({ id, emotion, content, date }) => {
@@ -8,6 +8,10 @@ const DiaryItem = ({ id, emotion, content, date }) => {
 
   const goDetail = () => {
     navigate(`/diary/${id}`);
+  };
+
+  const goEdit = () => {
+    navigate(`/edit/${id}`);
   };
 
   return (
@@ -23,13 +27,13 @@ const DiaryItem = ({ id, emotion, content, date }) => {
       </div>
       <div className="info_wrapper" onClick={goDetail}>
         <div className="diary_date">{strDate}</div>
-        <div className="diary_content_preview">{content && content}</div>
+        <div className="diary_content_preview">{content.slice(0, 25)}</div>
       </div>
       <div className="btn_wrapper">
-        <MyButton text={"수정하기"} />
+        <MyButton text={"수정하기"} onClick={goEdit} />
       </div>
     </div>
   );
 };
 
-export default DiaryItem;
+export default React.memo(DiaryItem);
