@@ -1,6 +1,6 @@
 # Emotion Diary
 
-Emotion diary using React
+Emotion diary using React, JS
 
 
 
