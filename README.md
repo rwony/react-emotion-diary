@@ -3,6 +3,10 @@
 Emotion diary using React, JS
 
 
+![emotion-diary](https://user-images.githubusercontent.com/88661435/191749277-e1b708c6-a250-4bd5-bb31-cbc1dc0f1432.gif)
+
+
+
 ### Demo
 [Link](https://consoleryog-react-emotion-diary-project.web.app/)
 
